@@ -5,13 +5,11 @@ const app = express();
 
 const PORT = process.env.PORT || 10000;
 
-// Serve icons dynamically and log USB number
 app.get('/:iconName', (req, res) => {
   const iconName = req.params.iconName;
-  const filePath = path.join(__dirname, 'icons', iconName);
+  const filePath = path.join(__dirname, 'icon_storage', iconName);
 
   if (fs.existsSync(filePath)) {
-    // Extract the number from the filename, e.g., brick22.ico → 22
     const match = iconName.match(/brick(\d+)\.ico/i);
     const usbNumber = match ? match[1] : "?";
 
